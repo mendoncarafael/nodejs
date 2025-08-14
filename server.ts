@@ -2,8 +2,11 @@ import Fastify from "fastify";
 import { db } from "./src/database/client.ts";
 // import { users } from "./src/database/schema.ts"
 import { courses } from "./src/database/schema.ts"
-import { users } from "./src/database/schema.ts"
-// import { z } from "zod";
+import { usersTable } from "./src/database/schema.ts"
+import { eq } from "drizzle-orm";
+import { z } from "zod";
+
+
 
 
 const server = Fastify();
@@ -14,14 +17,35 @@ server.get("/courses", async (request, reply) => {
 })
 
 server.get("/users", async (request, reply) => {
-    const result = await db.select().from(users)
-    return reply.send({usern: result})
+    const result = await db.select().from(usersTable)
+    return reply.send({usersTable: result})
 })
 
+server.get("/users/:id", async (request, reply) => {
+    const  users = z.object({
+        id: z.string()
+    })
+    const result = await db.select().from(usersTable).where(eq(usersTable.id, usersTable.id))
+    return reply.send({usersTable: result})
+})
+
+
 server.post("/users", async (request, reply) => {
-    const { name, email } = request.body
-    const result = await db.insert(users).values({ name, email })
-    return reply.send({user: result})
+
+    const users = z.object({
+        name: z.string(),
+        email: z.string()
+      });
+      
+      const { name, email } = users.parse(request.body);
+
+      // 3. Inserir no banco usando a tabela, não o schema do Zod
+      const result = await db.insert(usersTable).values({
+        name,
+        email
+      });
+
+    return reply.send({users: result})
 })
 
 server.listen({ port: 3333 }).then(() => {

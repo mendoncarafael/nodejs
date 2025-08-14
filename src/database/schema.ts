@@ -6,7 +6,7 @@ export const courses = pgTable("courses", {
     description: text("description"),
 });
 
-export const users = pgTable("users", {
+export const usersTable = pgTable("users", {
     id: uuid().primaryKey().defaultRandom(),
     name: text("name").notNull(),
     email: text("email").unique(),

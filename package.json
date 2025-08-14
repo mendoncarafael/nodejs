@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "node --env-file .env --watch server.ts",
+    "dev": "node --experimental-strip-types --env-file .env --watch server.ts",
     "services:up": "docker compose up -d",
     "services:down": "docker compose down",
     "db:push": "drizzle-kit push",
@@ -24,9 +25,12 @@
   },
   "homepage": "https://github.com/mendoncarafael/nodejs#readme",
   "dependencies": {
+    "@fastify/swagger": "^9.5.1",
+    "@fastify/swagger-ui": "^5.2.3",
     "drizzle-orm": "^0.44.4",
     "fastify": "^5.5.0",
-    "pg": "^8.16.3"
+    "pg": "^8.16.3",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@types/node": "^24.2.1",

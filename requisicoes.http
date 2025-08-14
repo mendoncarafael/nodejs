@@ -2,10 +2,14 @@
 GET http://localhost:3333/users
 
 ###
+GET http://localhost:3333/users/3923bca3-38f8-44ee-abcd-3d12ef118c19
 
-POST http://localhost:3333/courses
+###
+
+POST http://localhost:3333/users
 Content-Type: application/json
 
 {
-    "title": "Course 4"
+    "name": "teste",
+    "email": "tesrt@gmail.com"
 }
