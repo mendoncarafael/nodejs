@@ -1,6 +1,6 @@
 import { pgTable, text, uuid } from "drizzle-orm/pg-core";
 
-export const courses = pgTable("courses", {
+export const coursesTable = pgTable("courses", {
     id: uuid().primaryKey().defaultRandom(),
     title: text("title").notNull().unique(),
     description: text("description"),

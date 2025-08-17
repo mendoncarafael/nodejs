@@ -1,8 +1,9 @@
 
 GET http://localhost:3333/users
 
+
 ###
-GET http://localhost:3333/users/3923bca3-38f8-44ee-abcd-3d12ef118c19
+GET http://localhost:3333/users/e36c00ec-b646-4cbc-a46c-01c660774d5f
 
 ###
 
